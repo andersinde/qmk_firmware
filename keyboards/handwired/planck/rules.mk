@@ -1,6 +1,6 @@
 
 
-BOOTLOADER = halfkay
+BOOTLOADER = caterina
 
 # MCU name
 #MCU = at90usb1287
