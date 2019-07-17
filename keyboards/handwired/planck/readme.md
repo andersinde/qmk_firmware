@@ -23,4 +23,4 @@ ainders - plink
 
 ## How to flash:
 
-```cd ~/qmk_firmware && make handwired/planck:god1:avrdude```
+```cd ~/qmk_firmware && make handwired/planck:god2:avrdude```
