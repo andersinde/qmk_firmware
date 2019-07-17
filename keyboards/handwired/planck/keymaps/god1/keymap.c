@@ -25,12 +25,16 @@ enum planck_keycodes {
 #define SHIFT OSM(MOD_LSFT)
 #define NTAB LCTL(KC_TAB)
 #define PTAB LSFT(NTAB)
+#define A_CIRC LALT(KC_A)
+#define A_UMLAUT LALT(KC_F)
+#define O_UMLAUT LALT(KC_O)
 
-#define NO_AA LALT(KC_A) //Å
-#define NO_OSLH KC_QUOT  //Ä
-#define NO_AE KC_SCLN  //Ö
-
-#define ONESHOT_TIMEOUT  3000  /* Time (in ms) before the one shot key is released */
+/*
+    [SNEK]  = 0x1F40D, // 🐍
+    [ACIRC] = 0x00E4,
+    // [AUM]   = 0x203D,
+    [OUM]   = 0x00F6
+*/
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -42,14 +46,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|------+------+------+------+------+------|
  * | Shift| Shift|  Z   |   X  |   C  |   V  |   B  |   K  |   M  |   ,  |   .  |Enter |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * | Ctrl | Ctrl | Alt  | CMD  |Lower | Bksp |Space |Raise | Play | Next | Vol- | Vol+ |
+ * | Ctrl | Ctrl | Alt  | CMD  |Lower | Bksp |Space |Raise | Shift | Play | Vol- | Vol+ |
  * `-----------------------------------------------------------------------------------'
  */
 [_COLEMAK] = LAYOUT_planck_grid(
-    KC_TAB,  KC_Q,    KC_W,    KC_F,    KC_P,    KC_G,    KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN,     KC_BSPC,
-    KC_ESC,  KC_A,    KC_R,    KC_S,    KC_T,    KC_D,    KC_H,    KC_N,    KC_E,    KC_I,    KC_O,        KC_QUOT,
-    SHIFT,  SHIFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_K,    KC_M,    KC_COMM, KC_DOT,      KC_ENT ,
-    KC_LCTL, KC_LCTL, KC_LALT, KC_LGUI, LOWER,   KC_BSPC, KC_SPC,  RAISE,   KC_MPLY, KC_MFFD, KC__VOLDOWN, KC__VOLUP
+    KC_TAB,  KC_Q,    KC_W,    KC_F,    KC_P,    KC_G,    KC_J,    KC_L,   KC_U,  KC_Y,    KC_SCLN,     KC_BSPC,
+    KC_ESC,  KC_A,    KC_R,    KC_S,    KC_T,    KC_D,    KC_H,    KC_N,   KC_E,  KC_I,    KC_O,        KC_QUOT,
+    SHIFT,  SHIFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_K,   KC_M,  KC_COMM, KC_DOT,      KC_ENT ,
+    KC_LCTL, KC_LCTL, KC_LALT, KC_LGUI, LOWER,   KC_BSPC, KC_SPC,  RAISE, SHIFT,  KC_MPLY, KC__VOLDOWN, KC__VOLUP
 ),
 
 /* Lower
@@ -82,7 +86,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------------------------------------------------------'
  */
 [_RAISE] = LAYOUT_planck_grid(
-    _______, _______,  KC_F1,  KC_F2,  KC_F3, _______,  _______,   NO_AA, NO_OSLH,   NO_AE, _______, _______,
+    _______, _______,  KC_F1,  KC_F2,  KC_F3, _______,  _______, A_CIRC, A_UMLAUT, O_UMLAUT, _______, _______,
     _______, _______,  KC_F4,  KC_F5,  KC_F6, _______,  KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT, KC_COLN, _______,
     _______, _______,  KC_F7,  KC_F8,  KC_F9, _______,  _______, _______, _______, KC_PGUP, KC_PGDN, _______,
     _______, _______,_______,_______,_______, _______,  _______, _______, _______, _______, _______, _______
@@ -92,7 +96,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,-----------------------------------------------------------------------------------.
  * |EEPROM| Reset|      |      |GUI_on|      |      |      |      |      |      |  Del |
  * |------+------+------+------+------+-------------+------+------+------+------+------|
- * |      |      |      |      |      |      | left | down | up   |right |      |      |
+ * |      |      |      |      |      |      |      |      |      |      |      |      |
  * |------+------+------+------+------+------|------+------+------+------+------+------|
  * |      |      |      |      |      |      |      |      |      |      |      |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
@@ -118,14 +122,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       if (record->event.pressed) {
         print("switched to colemak\n");
         set_single_persistent_default_layer(_COLEMAK);
-      }
-      return false;
-      break;
-    case BACKLIT:
-      if (record->event.pressed) {
-        register_code(KC_RSFT);
-      } else {
-        unregister_code(KC_RSFT);
       }
       return false;
       break;

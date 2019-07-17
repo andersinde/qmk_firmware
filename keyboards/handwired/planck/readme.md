@@ -20,3 +20,7 @@ ainders - plink
 ["","","7","8","9","","","","","","",""],
 ["","","","","&dArr;","bksp","space",{c:"#d6bcbc"},"&uArr;",{c:"#cccccc"},"","","",""],
 ```
+
+## How to flash:
+
+```cd ~/qmk_firmware && make handwired/planck:god1:avrdude```
