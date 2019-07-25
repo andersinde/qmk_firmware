@@ -16,45 +16,37 @@ enum planck_layers {
 
 enum planck_keycodes {
   COLEMAK = SAFE_RANGE,
-  BACKLIT,
-  EXT_PLV
+  A_CIRC, //å
+  A_UMLAUT, //ä
+  O_UMLAUT //ö
 };
 
 #define LOWER MO(_LOWER)
 #define RAISE MO(_RAISE)
+
 #define MODSHFT OSM(MOD_LSFT)
 #define NTAB LCTL(KC_TAB)
 #define PTAB LSFT(NTAB)
 #define ESCTRL CTL_T(KC_ESC) // tab when tapped, ctrl when held
-
-#define A_CIRC LALT(KC_A)
-#define A_UMLAUT LALT(KC_F)
-#define O_UMLAUT LALT(KC_O)
+// #define BSHF SFT_T(KC   )
 
 #define ONESHOT_TAP_TOGGLE 5
-
-/*
-    [SNEK]  = 0x1F40D, // 🐍
-    [ACIRC] = 0x00E4,
- // [AUM]   = 0x203D,
-    [OUM]   = 0x00F6
-*/
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* Colemak
  * ,-----------------------------------------------------------------------------------.
- * | Esc  |   Q  |   W  |   F  |   P  |   G  |   J  |   L  |   U  |   Y  |   ;  | Bksp |
+ * | Esc  |   Q  |   W  |   F  |   P  |   G  |   J  |   L  |   U  |   Y  |   ;  |      |
  * |------+------+------+------+------+-------------+------+------+------+------+------|
  * |TabCtr|   A  |   R  |   S  |   T  |   D  |   H  |   N  |   E  |   I  |   O  |  "   |
  * |------+------+------+------+------+------|------+------+------+------+------+------|
  * | Shift| Shift|   Z  |   X  |   C  |   V  |   B  |   K  |   M  |   ,  |   .  |Enter |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * | bri- | bri+ | Alt  | CMD  |Lower | Bksp |Space |Raise |      | Play| Vol- | Vol+ |
+ * | bri- | bri+ | Alt  | CMD  |Lower | BSHF |Space |Raise |      | Play| Vol- | Vol+ |
  * `-----------------------------------------------------------------------------------'
  */
 [_COLEMAK] = LAYOUT_planck_grid(
-    KC_TAB,  KC_Q,    KC_W,    KC_F,    KC_P,    KC_G,    KC_J,    KC_L,    KC_U,  KC_Y,    KC_SCLN,     KC_BSPC,
+    KC_TAB,  KC_Q,    KC_W,    KC_F,    KC_P,    KC_G,    KC_J,    KC_L,    KC_U,  KC_Y,    KC_SCLN,     _______,
     ESCTRL,  KC_A,    KC_R,    KC_S,    KC_T,    KC_D,    KC_H,    KC_N,    KC_E,  KC_I,    KC_O,        KC_QUOT,
     MODSHFT, MODSHFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_K,    KC_M,  KC_COMM, KC_DOT,      KC_ENT ,
     KC_BRID, KC_BRIU, KC_LALT, KC_LGUI, LOWER,   KC_BSPC, KC_SPC,  RAISE,_______,  KC_MPLY, KC__VOLDOWN, KC__VOLUP
@@ -129,26 +121,26 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
       return false;
       break;
+    case A_CIRC:
+      if (record->event.pressed) {
+          SEND_STRING(SS_LALT("a"));
+      }
+      return false;
+      break;
+    case A_UMLAUT:
+      if (record->event.pressed) {
+        SEND_STRING(SS_LALT("u")"a");
+      }
+      return false;
+      break;
+    case O_UMLAUT:
+      if (record->event.pressed) {
+        SEND_STRING(SS_LALT("u")"o");
+      }
+      return false;
+      break;
   }
   return true;
-}
-
-void oneshot_mods_changed_user(uint8_t mods) {
-  if (mods & MOD_MASK_SHIFT) {
-    println("Oneshot mods SHIFT");
-  }
-  if (mods & MOD_MASK_CTRL) {
-    println("Oneshot mods CTRL");
-  }
-  if (mods & MOD_MASK_ALT) {
-    println("Oneshot mods ALT");
-  }
-  if (mods & MOD_MASK_GUI) {
-    println("Oneshot mods GUI");
-  }
-  if (!mods) {
-    println("Oneshot mods off");
-  }
 }
 
 void matrix_scan_user(void) {
