@@ -53,4 +53,8 @@
 )
 */
 
+// anders custom code below
+#define ONESHOT_TAP_TOGGLE 2  
+#define ONESHOT_TIMEOUT 4000  /* Time (in ms) before the one shot key is released */
+
 #endif
