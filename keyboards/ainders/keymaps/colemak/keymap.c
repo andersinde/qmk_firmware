@@ -14,21 +14,21 @@ enum planck_layers {
 
 enum planck_keycodes {
   COLEMAK = SAFE_RANGE,
-  KC_A_CIRC, //å
+  KC_A_CIRC,   //å
   KC_A_UMLAUT, //ä
-  KC_O_UMLAUT //ö
+  KC_O_UMLAUT  //ö
 };
 
 #define KC_LOWER LT(_LOWER, KC_TAB)
 #define KC_RAISE LT(_RAISE, KC_ENTER)
 
-#define KC_MSFT OSM(MOD_LSFT) // sticky shift
-#define KC_NTAB LCTL(KC_TAB)
+#define KC_NTAB LCTL(KC_TAB)  // switch tabs easily
 #define KC_PTAB LSFT(KC_NTAB)
-#define KC_SCRNSH LSFT(LCMD(KC_3)) // screenshot on a mac
 
-#define KC_ESCTRL CTL_T(KC_ESC) // tab when tapped, ctrl when held
-#define KC_SUPER LCAG_T(KC_NO) // caps when tapped, ctrl+alt+cmd when held
+#define KC_SCRNSH LSFT(LCMD(KC_3))// screenshot on a mac
+#define KC_ESCTRL CTL_T(KC_ESC)  // tab when tapped, ctrl when held
+#define KC_SUPER LCAG_T(KC_NO)  // ctrl+alt+cmd when held
+#define KC_MSFT OSM(MOD_LSFT)  // sticky shift
 
 #define ONESHOT_TAP_TOGGLE 2
 
@@ -36,13 +36,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [_COLEMAK] = LAYOUT_kc(
 // |-----+-----+-----+-----+-----+-----|     |-----+-----+-----+-----+-----+-----|
-     TAB,  Q  ,  W  ,  F  ,  P  ,  B  ,        J  ,  L  ,  U  ,  Y  , SCLN, BSPC,
+     TAB ,  Q  ,  W  ,  F  ,  P  ,  B  ,        J  ,  L  ,  U  ,  Y  , SCLN, BSPC,
 // |-----+-----+-----+-----+-----+-----|     |-----+-----+-----+-----+-----+-----|
    ESCTRL,  A  ,  R  ,  S  ,  T  ,  G  ,        M  ,  N  ,  E  ,  I  ,  O  , QUOT,
 // |-----+-----+-----+-----+-----+-----|     |-----+-----+-----+-----+-----+-----|
     SUPER,  Z  ,  X  ,  C  ,  D  ,  V  ,        K  ,  H  , COMM, DOT , SLSH, LALT,
 // |-----+-----+-----+-----+-----+-----|     |-----+-----+-----+-----+-----+-----|
-         ,     ,     , LCMD,LOWER, MSFT,       SPC ,RAISE,     ,     ,     ,
+         ,     ,     , LCMD,LOWER, MSFT,       SPC ,RAISE, LEAD,     ,     ,
 //                   |-----+-----+-----|     |-----+-----+-----|
 ),
 
@@ -54,13 +54,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // |-----+-----+-----+-----+-----+-----|     |-----+-----+-----+-----+-----+-----|
          , DOT ,  7  ,  8  ,  9  ,     ,           , LPRN, RPRN, GRV ,     ,     ,
 // |-----+-----+-----+-----+-----+-----|     |-----+-----+-----+-----+-----+-----|
-         ,     ,     ,     ,     ,      ,      LSFT,     ,     ,     , BRID, BRIU
-//                  |-----+-----+-----|     |-----+-----+-----|
+         ,     ,     ,     ,     ,     ,       LSFT,     ,     ,     , BRID, BRIU
+//                   |-----+-----+-----|     |-----+-----+-----|
 ),
 
 [_RAISE] = LAYOUT_kc(
 // |-----+-----+-----+-----+-----+-----|     |-----+-----+-----+-----+-----+-----|
-        , VOLU,  F1 ,  F2 ,SCRNSH,    ,         ,A_CIRC,A_UMLAUT,O_UMLAUT,,     ,
+         , VOLU,  F1 ,  F2 ,SCRNSH,    ,         ,A_CIRC,A_UMLAUT,O_UMLAUT,,     ,
 // |-----+-----+-----+-----+-----+-----|     |-----+-----+-----+-----+-----+-----|
          , VOLD, MRWD, MPLY, MFFD,    ,       LEFT, DOWN,  UP , RGHT, COLN,     ,
 // |-----+-----+-----+-----+-----+-----|     |-----+-----+-----+-----+-----+-----|
