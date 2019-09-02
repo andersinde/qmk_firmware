@@ -33,6 +33,7 @@ enum planck_keycodes {
 #define KC_MSFT   OSM(MOD_LSFT)  // sticky shift
 
 #define ONESHOT_TAP_TOGGLE 2 // double tap to toggle
+#define KC_EMOJI UC(0x45B)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -52,7 +53,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [_COLEMAK] = LAYOUT_kc(
 // |-----+-----+-----+-----+-----+-----|     |-----+-----+-----+-----+-----+-----|
-         ,  X  ,  W  ,  F  ,  P  ,  Q  ,        J  ,  L  ,  U  ,  Y  ,  B  , SCLN,
+    EMOJI,  X  ,  W  ,  F  ,  P  ,  Q  ,        J  ,  L  ,  U  ,  Y  ,  B  , SCLN,
 // |-----+-----+-----+-----+-----+-----|     |-----+-----+-----+-----+-----+-----|
    ESCTRL,  A  ,  R  ,  S  ,  T  ,  G  ,        M  ,  N  ,  E  ,  I  ,  O  , QUOT,
 // |-----+-----+-----+-----+-----+-----|     |-----+-----+-----+-----+-----+-----|
