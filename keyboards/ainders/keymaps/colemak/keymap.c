@@ -26,7 +26,7 @@ enum planck_layers {
 
 #define KC_SCRNSH LSFT(LCMD(KC_3))// screenshot on a mac
 #define KC_ESCTRL CTL_T(KC_ESC)  // tab when tapped, ctrl when held
-#define KC_SUPER  LCAG_T(KC_NO)  // ctrl+alt+cmd when held
+#define KC_CAC    LCAG_T(KC_NO)  // ctrl+alt+cmd when held
 #define KC_MSFT   OSM(MOD_LSFT)  // sticky shift
 
 #define ONESHOT_TAP_TOGGLE 2 // double tap to toggle
@@ -53,13 +53,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [_COLEMAK] = LAYOUT_kc(
 // |-----+-----+-----+-----+-----+-----|     |-----+-----+-----+-----+-----+-----|
-         ,  Q  ,  W  ,  F  ,  P  ,  B  ,        J  ,  L  ,  U  ,  Y  ,  X  ,     ,
+         ,  Q  ,  W  ,  F  ,  P  ,  B  ,        J  ,  L  ,  U  ,  Y  ,  X  , BSPC,
 // |-----+-----+-----+-----+-----+-----|     |-----+-----+-----+-----+-----+-----|
    ESCTRL,  A  ,  R  ,  S  ,  T  ,  G  ,        M  ,  N  ,  E  ,  I  ,  O  , QUOT,
 // |-----+-----+-----+-----+-----+-----|     |-----+-----+-----+-----+-----+-----|
-    SUPER, MSFT,  Z  ,  C  ,  D  ,  V  ,        K  ,  H  , COMM, DOT , SLSH, SCLN,
+     CAC , MSFT,  Z  ,  C  ,  D  ,  V  ,        K  ,  H  , COMM, DOT , SLSH, SCLN,
 // |-----+-----+-----+-----+-----+-----|     |-----+-----+-----+-----+-----+-----|
-                   ,,, CMD ,LOWER, BSPC,       SPC ,RAISE, ALT ,,,
+                   ,,, CMD ,LOWER,     ,       SPC ,RAISE, ALT ,,,
 //                   |-----+-----+-----|     |-----+-----+-----|
 ),
 
@@ -95,7 +95,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // |-----+-----+-----+-----+-----+-----|     |-----+-----+-----+-----+-----+-----|
          ,     ,     ,     ,     ,     ,           ,     ,     ,     ,     ,     ,
 // |-----+-----+-----+-----+-----+-----|     |-----+-----+-----+-----+-----+-----|
-//                   |-----+-----+-----|     |-----+-----+-----|
                    ,,,     ,     ,     ,           ,     ,     ,,,
 //                   |-----+-----+-----|     |-----+-----+-----|
 )
