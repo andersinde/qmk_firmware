@@ -32,7 +32,9 @@
 /* Debounce reduces chatter (unintended double-presses) - set 0 if debouncing is not needed */
 #define DEBOUNCING_DELAY 5
 
-
+/* Leader key */
+#define LEADER_TIMEOUT 300
+// #define LEADER_PER_KEY_TIMING
 
 /*
  * Magic Key Options
