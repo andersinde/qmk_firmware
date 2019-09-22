@@ -23,7 +23,8 @@
 
 /* ainders plink Keyboard Matrix Assignments */
 #define MATRIX_ROW_PINS { D1, D7, B3, B2 }
-#define MATRIX_COL_PINS { F4, F5, F6, F7, B1, B6, B5, B4, E6, C6, D4, D0 }
+//#define MATRIX_COL_PINS { F4, F5, F6, F7, B1, B6, B5, B4, E6, C6, D4, D0 }
+#define MATRIX_COL_PINS { F4, F5, F6, F7, B1, B6, B5, B4, E6, C6, D0, D4 }
 #define UNUSED_PINS
 
 /* COL2ROW or ROW2COL */
@@ -33,7 +34,7 @@
 #define DEBOUNCING_DELAY 5
 
 /* Leader key */
-#define LEADER_TIMEOUT 300
+//#define LEADER_TIMEOUT 300
 // #define LEADER_PER_KEY_TIMING
 
 /*
